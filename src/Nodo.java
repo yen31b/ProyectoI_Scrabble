@@ -1,25 +1,39 @@
-public class Nodo <T> {
-    private T valor;
-    private Nodo<T> siguiente;
+public class Nodo {
+    private int valor;
+    private Nodo siguiente;
+    private Nodo abajo;
 
-    public Nodo(T valor) {
-        this.valor = valor;
+    public Nodo() {
+        this.valor = 0;
         this.siguiente = null;
+        this.abajo = null;
     }
 
-    public T getValor() {
+    public void imprimirNodo() {
+        System.out.println(valor + "");
+    }
+
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(T valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
-    public Nodo<T> getSiguiente() {
+    public Nodo getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Nodo<T> siguiente) {
+    public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
+    }
+
+    public Nodo getAbajo() {
+        return abajo;
+    }
+
+    public void setAbajo(Nodo abajo) {
+        this.abajo = abajo;
     }
 }

@@ -1,10 +1,10 @@
-public class Matriz<T> {
+public class Matriz {
+    private static int filas;
+    private static int columnas;
+    private static Lista[] listaEnlazada;
 
-    public Nodo<T> primerNodo = null;
-
-    public void insertar(Nodo<T> nodo) {
-        nodo.setSiguiente(primerNodo);
-        primerNodo = nodo;
+    public static void main(String[] args) {
+        System.out.println();
+    }
     }
 
-}
