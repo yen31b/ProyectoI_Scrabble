@@ -1,5 +1,3 @@
-package Logic;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,10 +10,8 @@ public class Tablero {
 
 
     private static final int[] palabraTripleMatriz = {0, 7, 14, 105, 119, 210, 217, 224};
-    private static final int[] dobleLetraMatriz = {3, 11, 36, 38, 45, 52, 59, 92, 96, 98, 102, 108, 116, 122, 126, 128,
-            132, 165, 172, 179, 186, 188, 213, 221};
-    private static final int[] doblePalabraMatriz = {16, 28, 32, 42, 48, 56, 64, 70, 154, 160, 168, 176, 182, 192, 196,
-            208};
+    private static final int[] dobleLetraMatriz = {3, 11, 36, 38, 45, 52, 59, 92, 96, 98, 102, 108, 116, 122, 126, 128, 132, 165, 172, 179, 186, 188, 213, 221};
+    private static final int[] doblePalabraMatriz = {16, 28, 32, 42, 48, 56, 64, 70, 154, 160, 168, 176, 182, 192, 196, 208};
     private static final int[] tripleLetraMatriz = {20, 24, 76, 80, 84, 88, 136, 140, 144, 148, 200, 204};
     private static final int numCasillas = 225;
 
@@ -36,25 +32,25 @@ public class Tablero {
             for (int j = 0; j < palabraTripleMatriz.length; j++) {
                 if (i == palabraTripleMatriz[j]) {
                     casillas.searchNodo(i).getDato().setAumento_Puntos(palabraTripe);
-                    casillas.searchNodo(i).getDato().setLabel("TWS");
+                    casillas.searchNodo(i).getDato().setLabel("Px3");
                 }
             }
             for (int j = 0; j < tripleLetraMatriz.length; j++) {
                 if (i == tripleLetraMatriz[j]) {
                     casillas.searchNodo(i).getDato().setAumento_Puntos(letraTripe);
-                    casillas.searchNodo(i).getDato().setLabel("TLS");
+                    casillas.searchNodo(i).getDato().setLabel("Lx3");
                 }
             }
             for (int j = 0; j < doblePalabraMatriz.length; j++) {
                 if (i == doblePalabraMatriz[j]) {
                     casillas.searchNodo(i).getDato().setAumento_Puntos(palabraDoble);
-                    casillas.searchNodo(i).getDato().setLabel("DWS");
+                    casillas.searchNodo(i).getDato().setLabel("Px2");
                 }
             }
             for (int j = 0; j < dobleLetraMatriz.length; j++) {
                 if (i == dobleLetraMatriz[j]) {
                     casillas.searchNodo(i).getDato().setAumento_Puntos(letraDoble);
-                    casillas.searchNodo(i).getDato().setLabel("DLS");
+                    casillas.searchNodo(i).getDato().setLabel("Lx2");
                 }
             }
         }
@@ -66,15 +62,14 @@ public class Tablero {
 
         ArrayList<Casilla> validCasillas = new ArrayList<>();
 
-        for (int j=0; j<casillas.getSize();j++){
+        for (int j=0; j<casillas.getSize()-1;j++){
             casillas.searchNodo(j).getDato().setValido(false);
         }
 
         boolean tableroVacio = true;
 
         for (int j=0; j<casillas.getSize();j++){
-            if (casillas.searchNodo(j).getDato().EsOcupado()
-                    && estadoJuego.Obt_espacios_jugados().contains(casillas.searchNodo(j).getDato())) {
+            if (casillas.searchNodo(j).getDato().EsOcupado() && estadoJuego.Obt_espacios_jugados().contains(casillas.searchNodo(j).getDato())) {
                 casillas.searchNodo(j).getDato().setValido(true);
             }
             if (casillas.searchNodo(j).getDato().esValido()) {
@@ -150,23 +145,17 @@ public class Tablero {
                 firstCasilla = estadoJuego.Obt_espacios_jugados().get(0);
             }
 
-            if (!casillas.searchNodo(firstCasilla.getIndex() - 1).getDato().EsOcupado()
-                    && !casillas.searchNodo(firstCasilla.getIndex() + 1).getDato().EsOcupado()) {
+            if (!casillas.searchNodo(firstCasilla.getIndex() - 1).getDato().EsOcupado() && !casillas.searchNodo(firstCasilla.getIndex() + 1).getDato().EsOcupado()) {
                 estadoJuego.setOrientacion(Estado_Juego.Vertical);
-            } else if (!casillas.searchNodo(firstCasilla.getIndex() + 15).getDato().EsOcupado()
-                    && !casillas.searchNodo(firstCasilla.getIndex() - 15).getDato().EsOcupado()) {
+            } else if (!casillas.searchNodo(firstCasilla.getIndex() + 15).getDato().EsOcupado() && !casillas.searchNodo(firstCasilla.getIndex() - 15).getDato().EsOcupado()) {
                 estadoJuego.setOrientacion(Estado_Juego.Horizontal);
-            } else if (!casillas.searchNodo(firstCasilla.getIndex() - 15).getDato().EsOcupado()
-                    && !casillas.searchNodo(firstCasilla.getIndex() - 1).getDato().EsOcupado()) {
+            } else if (!casillas.searchNodo(firstCasilla.getIndex() - 15).getDato().EsOcupado() && !casillas.searchNodo(firstCasilla.getIndex() - 1).getDato().EsOcupado()) {
                 estadoJuego.setOrientacion(Estado_Juego.Horizontal);
-            } else if (!casillas.searchNodo(firstCasilla.getIndex() - 15).getDato().EsOcupado()
-                    && !casillas.searchNodo(firstCasilla.getIndex() + 1).getDato().EsOcupado()) {
+            } else if (!casillas.searchNodo(firstCasilla.getIndex() - 15).getDato().EsOcupado() && !casillas.searchNodo(firstCasilla.getIndex() + 1).getDato().EsOcupado()) {
                 estadoJuego.setOrientacion(Estado_Juego.Vertical);
-            } else if (!casillas.searchNodo(firstCasilla.getIndex() + 15).getDato().EsOcupado()
-                    && !casillas.searchNodo(firstCasilla.getIndex() - 1).getDato().EsOcupado()) {
+            } else if (!casillas.searchNodo(firstCasilla.getIndex() + 15).getDato().EsOcupado() && !casillas.searchNodo(firstCasilla.getIndex() - 1).getDato().EsOcupado()) {
                 estadoJuego.setOrientacion(Estado_Juego.Horizontal);
-            } else if (!casillas.searchNodo(firstCasilla.getIndex() + 15).getDato().EsOcupado()
-                    && !casillas.searchNodo(firstCasilla.getIndex() + 1).getDato().EsOcupado()) {
+            } else if (!casillas.searchNodo(firstCasilla.getIndex() + 15).getDato().EsOcupado() && !casillas.searchNodo(firstCasilla.getIndex() + 1).getDato().EsOcupado()) {
                 estadoJuego.setOrientacion(Estado_Juego.Horizontal);
             }
         }
